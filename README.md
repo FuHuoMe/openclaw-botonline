@@ -1,22 +1,22 @@
-# 🧞 Moltbot 中文版
+# 🧞 Openclaw 中文版
 
 **私有化部署的 AI 智能助手，完整中文本地化。**
 
 <p align="center">
-  <img src="docs/images/main-view.png" alt="Moltbot 中文版控制界面" width="800">
+  <img src="docs/images/main-view.png" alt="Openclaw 中文版控制界面" width="800">
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/moltbot-cn"><img src="https://img.shields.io/npm/v/moltbot-cn?style=for-the-badge&logo=npm&logoColor=white&label=npm" alt="npm 版本"></a>
+  <a href="https://www.npmjs.com/package/openclaw-cn"><img src="https://img.shields.io/npm/v/openclaw-cn?style=for-the-badge&logo=npm&logoColor=white&label=npm" alt="npm 版本"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/Node.js-%E2%89%A5%2022-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js 版本"></a>
-  <a href="https://github.com/jiulingyun/moltbot-cn"><img src="https://img.shields.io/github/stars/jiulingyun/moltbot-cn?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars"></a>
+  <a href="https://github.com/nicekwell/openclaw-cn"><img src="https://img.shields.io/github/stars/nicekwell/openclaw-cn?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-blue.svg?style=for-the-badge" alt="MIT 许可证"></a>
 </p>
 
 <p align="center">
   <a href="https://clawd.org.cn">🌐 官网</a> ·
   <a href="https://clawd.org.cn/docs">📖 文档</a> ·
-  <a href="https://github.com/jiulingyun/moltbot-cn/issues">💬 反馈</a>
+  <a href="https://github.com/nicekwell/openclaw-cn/issues">💬 反馈</a>
 </p>
 
 ---
@@ -36,43 +36,43 @@
 
 ```bash
 # 安装
-npm install -g moltbot-cn@latest
+npm install -g openclaw-cn@latest
 
 # 运行安装向导
-moltbot-cn onboard --install-daemon
+openclaw-cn onboard --install-daemon
 
 # 启动网关
-moltbot-cn gateway --port 18789 --verbose
+openclaw-cn gateway --port 18789 --verbose
 ```
 
-> 💡 **兼容性：** 旧版本 `clawdbot-cn` 命令仍然可用，作为别名指向 `moltbot-cn`。
+> 💡 **兼容性：** 旧版本 `clawdbot-cn` 命令仍然可用，作为别名指向 `openclaw-cn`。
 
 ## 📦 安装方式
 
 ### npm（推荐）
 
 ```bash
-npm install -g moltbot-cn@latest
+npm install -g openclaw-cn@latest
 # 或
-pnpm add -g moltbot-cn@latest
+pnpm add -g openclaw-cn@latest
 ```
 
 ### 从源码构建
 
 ```bash
-git clone https://github.com/jiulingyun/moltbot-cn.git
-cd moltbot-cn
+git clone https://github.com/jiulingyun/openclaw-cn.git
+cd openclaw-cn
 
 pnpm install
 pnpm ui:build
 pnpm build
 
-pnpm moltbot-cn onboard --install-daemon
+pnpm openclaw-cn onboard --install-daemon
 ```
 
 ## 🔧 配置
 
-最小配置 `~/.moltbot/moltbot.json`：
+最小配置 `~/.openclaw/openclaw.json`：
 
 ```json
 {
@@ -91,7 +91,7 @@ pnpm moltbot-cn onboard --install-daemon
 
 ## 🔄 版本同步
 
-本项目基于 [moltbot/moltbot](https://github.com/moltbot/moltbot) 进行中文本地化，定期与上游保持同步。
+本项目基于 [openclaw/openclaw](https://github.com/openclaw/openclaw) 进行中文本地化，定期与上游保持同步。
 
 版本格式：`vYYYY.M.D-cn.N`（如 `v2026.1.24-cn.3`）
 
@@ -119,5 +119,5 @@ pnpm moltbot-cn onboard --install-daemon
 ---
 
 <p align="center">
-  基于 <a href="https://github.com/moltbot/moltbot">Moltbot</a> · 感谢原项目开发者 🧞
+  基于 <a href="https://github.com/nicekwell/openclaw">Openclaw</a> · 感谢原项目开发者 🧞
 </p>
