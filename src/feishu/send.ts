@@ -3,6 +3,7 @@ import { Readable } from "node:stream";
 import { getChildLogger } from "../logging.js";
 import { loadWebMedia } from "../web/media.js";
 import { mediaKindFromMime } from "../media/constants.js";
+import { containsMarkdown, markdownToFeishuPost, type FeishuPostContent } from "./format.js";
 
 const logger = getChildLogger({ module: "feishu-send" });
 
@@ -15,6 +16,8 @@ export type FeishuSendOpts = {
   mediaUrl?: string;
   /** Max bytes for media download */
   maxBytes?: number;
+  /** Whether to auto-convert Markdown to rich text (post). Default: true */
+  autoRichText?: boolean;
 };
 
 export type FeishuSendResult = {
@@ -252,6 +255,26 @@ export async function sendMessageFeishu(
       // Re-throw the error instead of falling back to text
       // This makes debugging easier and prevents silent failures
       throw new Error(`Feishu media upload failed: ${errMsg}`);
+    }
+  }
+
+  // Auto-convert Markdown to rich text if enabled and content is text with Markdown
+  const autoRichText = opts.autoRichText !== false;
+  if (
+    autoRichText &&
+    msgType === "text" &&
+    finalContent?.text &&
+    typeof finalContent.text === "string" &&
+    containsMarkdown(finalContent.text)
+  ) {
+    try {
+      const postContent = markdownToFeishuPost(finalContent.text);
+      msgType = "post";
+      finalContent = postContent;
+      logger.debug(`Converted Markdown to Feishu post format`);
+    } catch (err) {
+      logger.warn(`Failed to convert Markdown to post, falling back to text: ${err}`);
+      // Fall back to plain text
     }
   }
 
