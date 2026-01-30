@@ -1,6 +1,6 @@
 {
   "name": "moltbot-cn",
-  "version": "2026.1.24-cn.3",
+  "version": "2026.1.30-beta.2",
   "description": "Moltbot 中文版 - WhatsApp gateway CLI (Baileys web) with Pi RPC agent",
   "type": "module",
   "main": "dist/index.js",
@@ -45,6 +45,7 @@
     "dist/slack/**",
     "dist/telegram/**",
     "dist/line/**",
+    "dist/feishu/**",
     "dist/tui/**",
     "dist/tts/**",
     "dist/web/**",
