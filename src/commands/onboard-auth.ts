@@ -20,6 +20,14 @@ export {
   applyZaiConfig,
 } from "./onboard-auth.config-core.js";
 export {
+  applySiliconflowConfig,
+  applySiliconflowProviderConfig,
+  applyDashscopeConfig,
+  applyDashscopeProviderConfig,
+  applyDeepseekConfig,
+  applyDeepseekProviderConfig,
+} from "./onboard-auth.config-core.js";
+export {
   applyMinimaxApiConfig,
   applyMinimaxApiProviderConfig,
   applyMinimaxConfig,
@@ -50,6 +58,11 @@ export {
   ZAI_DEFAULT_MODEL_REF,
 } from "./onboard-auth.credentials.js";
 export {
+  setSiliconflowApiKey,
+  setDashscopeApiKey,
+  setDeepseekApiKey,
+} from "./onboard-auth.credentials.js";
+export {
   buildKimiCodeModelDefinition,
   buildMinimaxApiModelDefinition,
   buildMinimaxModelDefinition,
@@ -64,4 +77,15 @@ export {
   MOONSHOT_BASE_URL,
   MOONSHOT_DEFAULT_MODEL_ID,
   MOONSHOT_DEFAULT_MODEL_REF,
+} from "./onboard-auth.models.js";
+export {
+  SILICONFLOW_BASE_URL,
+  SILICONFLOW_DEFAULT_MODEL_REF,
+  DASHSCOPE_BASE_URL,
+  DASHSCOPE_DEFAULT_MODEL_REF,
+  DEEPSEEK_BASE_URL,
+  DEEPSEEK_DEFAULT_MODEL_REF,
+  buildSiliconflowModelDefinition,
+  buildDashscopeModelDefinition,
+  buildDeepseekModelDefinition,
 } from "./onboard-auth.models.js";

@@ -14,6 +14,10 @@ const PREFERRED_PROVIDER_BY_AUTH_CHOICE: Partial<Record<AuthChoice, string>> = {
   "ai-gateway-api-key": "vercel-ai-gateway",
   "moonshot-api-key": "moonshot",
   "kimi-code-api-key": "kimi-code",
+  // 新增：OpenAI兼容供应商的API Key映射
+  "siliconflow-api-key": "siliconflow",
+  "dashscope-api-key": "dashscope",
+  "deepseek-api-key": "deepseek",
   "gemini-api-key": "google",
   "google-antigravity": "google-antigravity",
   "google-gemini-cli": "google-gemini-cli",

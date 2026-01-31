@@ -11,6 +11,10 @@ export type AuthChoice =
   | "chutes"
   | "openai-codex"
   | "openai-api-key"
+  // 新增：OpenAI兼容供应商（硅基流动、阿里云百炼、DeepSeek）的API Key选择
+  | "siliconflow-api-key"
+  | "dashscope-api-key"
+  | "deepseek-api-key"
   | "openrouter-api-key"
   | "ai-gateway-api-key"
   | "moonshot-api-key"
@@ -71,6 +75,10 @@ export type OnboardOptions = {
   syntheticApiKey?: string;
   veniceApiKey?: string;
   opencodeZenApiKey?: string;
+  // 新增：OpenAI兼容供应商API Key（非交互模式使用）
+  siliconflowApiKey?: string;
+  dashscopeApiKey?: string;
+  deepseekApiKey?: string;
   gatewayPort?: number;
   gatewayBind?: GatewayBind;
   gatewayAuth?: GatewayAuthChoice;

@@ -285,6 +285,10 @@ export function resolveEnvApiKey(provider: string): EnvApiKeyResult | null {
     venice: "VENICE_API_KEY",
     mistral: "MISTRAL_API_KEY",
     opencode: "OPENCODE_API_KEY",
+    // 新增：OpenAI兼容供应商环境变量映射
+    siliconflow: "SILICONFLOW_API_KEY",
+    dashscope: "DASHSCOPE_API_KEY",
+    deepseek: "DEEPSEEK_API_KEY",
   };
   const envVar = envMap[normalized];
   if (!envVar) return null;

@@ -164,3 +164,42 @@ export async function setOpencodeZenApiKey(key: string, agentDir?: string) {
     agentDir: resolveAuthAgentDir(agentDir),
   });
 }
+
+// 新增：硅基流动 API Key 写入到代理目录
+export async function setSiliconflowApiKey(key: string, agentDir?: string) {
+  upsertAuthProfile({
+    profileId: "siliconflow:default",
+    credential: {
+      type: "api_key",
+      provider: "siliconflow",
+      key,
+    },
+    agentDir: resolveAuthAgentDir(agentDir),
+  });
+}
+
+// 新增：阿里云百炼（DashScope） API Key 写入到代理目录
+export async function setDashscopeApiKey(key: string, agentDir?: string) {
+  upsertAuthProfile({
+    profileId: "dashscope:default",
+    credential: {
+      type: "api_key",
+      provider: "dashscope",
+      key,
+    },
+    agentDir: resolveAuthAgentDir(agentDir),
+  });
+}
+
+// 新增：DeepSeek API Key 写入到代理目录
+export async function setDeepseekApiKey(key: string, agentDir?: string) {
+  upsertAuthProfile({
+    profileId: "deepseek:default",
+    credential: {
+      type: "api_key",
+      provider: "deepseek",
+      key,
+    },
+    agentDir: resolveAuthAgentDir(agentDir),
+  });
+}
