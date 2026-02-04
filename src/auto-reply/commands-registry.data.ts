@@ -46,7 +46,7 @@ function defineDockCommand(dock: ChannelDock): ChatCommandDefinition {
   return defineChatCommand({
     key: `dock:${dock.id}`,
     nativeName: `dock_${dock.id}`,
-    description: `Switch to ${dock.id} for replies.`,
+    description: `切换到 ${dock.id} 进行回复`,
     textAliases: [`/dock-${dock.id}`, `/dock_${dock.id}`],
   });
 }
@@ -122,30 +122,30 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "help",
       nativeName: "help",
-      description: "Show available commands.",
+      description: "显示可用命令",
       textAlias: "/help",
     }),
     defineChatCommand({
       key: "commands",
       nativeName: "commands",
-      description: "List all slash commands.",
+      description: "列出所有斜杠命令",
       textAlias: "/commands",
     }),
     defineChatCommand({
       key: "skill",
       nativeName: "skill",
-      description: "Run a skill by name.",
+      description: "按名称运行技能",
       textAlias: "/skill",
       args: [
         {
           name: "name",
-          description: "Skill name",
+          description: "技能名称",
           type: "string",
           required: true,
         },
         {
           name: "input",
-          description: "Skill input",
+          description: "技能输入",
           type: "string",
           captureRemaining: true,
         },
@@ -154,12 +154,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "status",
       nativeName: "status",
-      description: "Show current status.",
+      description: "显示当前状态",
       textAlias: "/status",
     }),
     defineChatCommand({
       key: "allowlist",
-      description: "List/add/remove allowlist entries.",
+      description: "列出/添加/移除白名单条目",
       textAlias: "/allowlist",
       acceptsArgs: true,
       scope: "text",
@@ -167,50 +167,50 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "approve",
       nativeName: "approve",
-      description: "Approve or deny exec requests.",
+      description: "批准或拒绝执行请求",
       textAlias: "/approve",
       acceptsArgs: true,
     }),
     defineChatCommand({
       key: "context",
       nativeName: "context",
-      description: "Explain how context is built and used.",
+      description: "解释上下文如何构建和使用",
       textAlias: "/context",
       acceptsArgs: true,
     }),
     defineChatCommand({
       key: "tts",
       nativeName: "tts",
-      description: "Configure text-to-speech.",
+      description: "配置语音合成",
       textAlias: "/tts",
       acceptsArgs: true,
     }),
     defineChatCommand({
       key: "whoami",
       nativeName: "whoami",
-      description: "Show your sender id.",
+      description: "显示你的发送者ID",
       textAlias: "/whoami",
     }),
     defineChatCommand({
       key: "subagents",
       nativeName: "subagents",
-      description: "List/stop/log/info subagent runs for this session.",
+      description: "列出/停止/查看子代理运行日志",
       textAlias: "/subagents",
       args: [
         {
           name: "action",
-          description: "list | stop | log | info | send",
+          description: "操作: list | stop | log | info | send",
           type: "string",
           choices: ["list", "stop", "log", "info", "send"],
         },
         {
           name: "target",
-          description: "Run id, index, or session key",
+          description: "运行ID、索引或会话Key",
           type: "string",
         },
         {
           name: "value",
-          description: "Additional input (limit/message)",
+          description: "额外输入（限制/消息）",
           type: "string",
           captureRemaining: true,
         },
@@ -220,23 +220,23 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "config",
       nativeName: "config",
-      description: "Show or set config values.",
+      description: "显示或设置配置值",
       textAlias: "/config",
       args: [
         {
           name: "action",
-          description: "show | get | set | unset",
+          description: "操作: show | get | set | unset",
           type: "string",
           choices: ["show", "get", "set", "unset"],
         },
         {
           name: "path",
-          description: "Config path",
+          description: "配置路径",
           type: "string",
         },
         {
           name: "value",
-          description: "Value for set",
+          description: "要设置的值",
           type: "string",
           captureRemaining: true,
         },
@@ -247,23 +247,23 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "debug",
       nativeName: "debug",
-      description: "Set runtime debug overrides.",
+      description: "设置运行时调试选项",
       textAlias: "/debug",
       args: [
         {
           name: "action",
-          description: "show | reset | set | unset",
+          description: "操作: show | reset | set | unset",
           type: "string",
           choices: ["show", "reset", "set", "unset"],
         },
         {
           name: "path",
-          description: "Debug path",
+          description: "调试路径",
           type: "string",
         },
         {
           name: "value",
-          description: "Value for set",
+          description: "要设置的值",
           type: "string",
           captureRemaining: true,
         },
@@ -274,12 +274,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "usage",
       nativeName: "usage",
-      description: "Usage footer or cost summary.",
+      description: "用量统计或成本摘要",
       textAlias: "/usage",
       args: [
         {
           name: "mode",
-          description: "off, tokens, full, or cost",
+          description: "模式: off, tokens, full, cost",
           type: "string",
           choices: ["off", "tokens", "full", "cost"],
         },
@@ -289,24 +289,24 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "stop",
       nativeName: "stop",
-      description: "Stop the current run.",
+      description: "停止当前运行",
       textAlias: "/stop",
     }),
     defineChatCommand({
       key: "restart",
       nativeName: "restart",
-      description: "Restart Clawdbot.",
+      description: "重启 Clawdbot",
       textAlias: "/restart",
     }),
     defineChatCommand({
       key: "activation",
       nativeName: "activation",
-      description: "Set group activation mode.",
+      description: "设置群组激活模式",
       textAlias: "/activation",
       args: [
         {
           name: "mode",
-          description: "mention or always",
+          description: "模式: mention 或 always",
           type: "string",
           choices: ["mention", "always"],
         },
@@ -316,12 +316,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "send",
       nativeName: "send",
-      description: "Set send policy.",
+      description: "设置发送策略",
       textAlias: "/send",
       args: [
         {
           name: "mode",
-          description: "on, off, or inherit",
+          description: "模式: on, off, inherit",
           type: "string",
           choices: ["on", "off", "inherit"],
         },
@@ -331,26 +331,26 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "reset",
       nativeName: "reset",
-      description: "Reset the current session.",
+      description: "重置当前会话",
       textAlias: "/reset",
       acceptsArgs: true,
     }),
     defineChatCommand({
       key: "new",
       nativeName: "new",
-      description: "Start a new session.",
+      description: "开始新会话",
       textAlias: "/new",
       acceptsArgs: true,
     }),
     defineChatCommand({
       key: "compact",
-      description: "Compact the session context.",
+      description: "压缩会话上下文",
       textAlias: "/compact",
       scope: "text",
       args: [
         {
           name: "instructions",
-          description: "Extra compaction instructions",
+          description: "额外压缩指令",
           type: "string",
           captureRemaining: true,
         },
@@ -359,12 +359,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "think",
       nativeName: "think",
-      description: "Set thinking level.",
+      description: "设置思考深度",
       textAlias: "/think",
       args: [
         {
           name: "level",
-          description: "off, minimal, low, medium, high, xhigh",
+          description: "等级: off, minimal, low, medium, high, xhigh",
           type: "string",
           choices: ({ provider, model }) => listThinkingLevels(provider, model),
         },
@@ -374,12 +374,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "verbose",
       nativeName: "verbose",
-      description: "Toggle verbose mode.",
+      description: "切换详细模式",
       textAlias: "/verbose",
       args: [
         {
           name: "mode",
-          description: "on or off",
+          description: "模式: on 或 off",
           type: "string",
           choices: ["on", "off"],
         },
@@ -389,12 +389,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "reasoning",
       nativeName: "reasoning",
-      description: "Toggle reasoning visibility.",
+      description: "切换推理过程可见性",
       textAlias: "/reasoning",
       args: [
         {
           name: "mode",
-          description: "on, off, or stream",
+          description: "模式: on, off, stream",
           type: "string",
           choices: ["on", "off", "stream"],
         },
@@ -404,12 +404,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "elevated",
       nativeName: "elevated",
-      description: "Toggle elevated mode.",
+      description: "切换高权限模式",
       textAlias: "/elevated",
       args: [
         {
           name: "mode",
-          description: "on, off, ask, or full",
+          description: "模式: on, off, ask, full",
           type: "string",
           choices: ["on", "off", "ask", "full"],
         },
@@ -419,12 +419,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "exec",
       nativeName: "exec",
-      description: "Set exec defaults for this session.",
+      description: "设置本会话的执行默认值",
       textAlias: "/exec",
       args: [
         {
           name: "options",
-          description: "host=... security=... ask=... node=...",
+          description: "选项: host=... security=... ask=... node=...",
           type: "string",
         },
       ],
@@ -433,12 +433,12 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "model",
       nativeName: "model",
-      description: "Show or set the model.",
+      description: "显示或设置模型",
       textAlias: "/model",
       args: [
         {
           name: "model",
-          description: "Model id (provider/model or id)",
+          description: "模型ID（提供商/模型 或 ID）",
           type: "string",
         },
       ],
@@ -446,7 +446,7 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "models",
       nativeName: "models",
-      description: "List model providers or provider models.",
+      description: "列出模型提供商或可用模型",
       textAlias: "/models",
       argsParsing: "none",
       acceptsArgs: true,
@@ -454,28 +454,28 @@ function buildChatCommands(): ChatCommandDefinition[] {
     defineChatCommand({
       key: "queue",
       nativeName: "queue",
-      description: "Adjust queue settings.",
+      description: "调整队列设置",
       textAlias: "/queue",
       args: [
         {
           name: "mode",
-          description: "queue mode",
+          description: "队列模式",
           type: "string",
           choices: ["steer", "interrupt", "followup", "collect", "steer-backlog"],
         },
         {
           name: "debounce",
-          description: "debounce duration (e.g. 500ms, 2s)",
+          description: "防抖时长（如 500ms, 2s）",
           type: "string",
         },
         {
           name: "cap",
-          description: "queue cap",
+          description: "队列上限",
           type: "number",
         },
         {
           name: "drop",
-          description: "drop policy",
+          description: "丢弃策略",
           type: "string",
           choices: ["old", "new", "summarize"],
         },
@@ -485,13 +485,13 @@ function buildChatCommands(): ChatCommandDefinition[] {
     }),
     defineChatCommand({
       key: "bash",
-      description: "Run host shell commands (host-only).",
+      description: "运行主机 shell 命令（仅限本机）",
       textAlias: "/bash",
       scope: "text",
       args: [
         {
           name: "command",
-          description: "Shell command",
+          description: "Shell 命令",
           type: "string",
           captureRemaining: true,
         },
