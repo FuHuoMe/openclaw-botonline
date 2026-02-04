@@ -13,6 +13,7 @@ import {
   resolveFeishuGroupEnabled,
   type ResolvedFeishuConfig,
 } from "./config.js";
+import { resolveFeishuDocsFromMessage } from "./docs.js";
 import { resolveFeishuMedia, type FeishuMediaRef } from "./download.js";
 import { readFeishuAllowFromStore, upsertFeishuPairingRequest } from "./pairing-store.js";
 import { sendMessageFeishu } from "./send.js";
@@ -21,7 +22,8 @@ import { FeishuStreamingSession } from "./streaming-card.js";
 const logger = getChildLogger({ module: "feishu-message" });
 
 // Supported message types for processing
-const SUPPORTED_MSG_TYPES = ["text", "image", "file", "audio", "media", "sticker"];
+// - post: rich text (may contain document links)
+const SUPPORTED_MSG_TYPES = ["text", "post", "image", "file", "audio", "media", "sticker"];
 
 export type ProcessFeishuMessageOptions = {
   cfg?: ClawdbotConfig;
@@ -200,7 +202,7 @@ export async function processFeishuMessage(
     }
   }
 
-  // Extract text content (for text messages or captions)
+  // Extract text content (for text messages or rich text)
   let text = "";
   if (msgType === "text") {
     try {
@@ -208,6 +210,41 @@ export async function processFeishuMessage(
       text = content.text || "";
     } catch (e) {
       logger.error(`Failed to parse text message content: ${e}`);
+    }
+  } else if (msgType === "post") {
+    // Extract text from rich text (post) message
+    try {
+      const content = JSON.parse(message.content);
+      const parts: string[] = [];
+
+      // Include title if present
+      if (content.title) {
+        parts.push(content.title);
+      }
+
+      // Extract text from content elements
+      if (Array.isArray(content.content)) {
+        for (const line of content.content) {
+          if (!Array.isArray(line)) continue;
+          const lineParts: string[] = [];
+          for (const element of line) {
+            if (element.tag === "text" && element.text) {
+              lineParts.push(element.text);
+            } else if (element.tag === "a" && element.text) {
+              lineParts.push(element.text);
+            } else if (element.tag === "at" && element.user_name) {
+              lineParts.push(`@${element.user_name}`);
+            }
+          }
+          if (lineParts.length > 0) {
+            parts.push(lineParts.join(""));
+          }
+        }
+      }
+
+      text = parts.join("\n");
+    } catch (e) {
+      logger.error(`Failed to parse post message content: ${e}`);
     }
   }
 
@@ -246,9 +283,9 @@ export async function processFeishuMessage(
     }
   }
 
-  // Resolve media if present
+  // Resolve media if present (for image, file, audio, media, sticker types)
   let media: FeishuMediaRef | null = null;
-  if (msgType !== "text") {
+  if (!["text", "post"].includes(msgType)) {
     try {
       media = await resolveFeishuMedia(client, message, maxMediaBytes);
     } catch (err) {
@@ -256,10 +293,31 @@ export async function processFeishuMessage(
     }
   }
 
+  // Resolve document content if message contains Feishu doc links
+  let docContent: string | null = null;
+  if (msgType === "text" || msgType === "post") {
+    try {
+      docContent = await resolveFeishuDocsFromMessage(client, message, {
+        maxDocsPerMessage: 3,
+        maxTotalLength: 100000,
+      });
+      if (docContent) {
+        logger.debug(`Resolved ${docContent.length} chars of document content`);
+      }
+    } catch (err) {
+      logger.error(`Failed to resolve document content: ${err}`);
+    }
+  }
+
   // Build body text
   let bodyText = text;
   if (!bodyText && media) {
     bodyText = media.placeholder;
+  }
+
+  // Append document content if available
+  if (docContent) {
+    bodyText = bodyText ? `${bodyText}\n\n${docContent}` : docContent;
   }
 
   // Skip if no content
