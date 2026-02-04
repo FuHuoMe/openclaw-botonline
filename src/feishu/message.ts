@@ -328,6 +328,15 @@ export async function processFeishuMessage(
 
   const senderName = sender?.sender_id?.user_id || "unknown";
 
+  // Resolve reply-to mode for group chats
+  // In group chats, we quote the original message to provide context
+  const { groupConfig } = isGroup
+    ? resolveFeishuGroupConfig({ cfg, accountId, chatId })
+    : { groupConfig: undefined };
+  const replyToMode = isGroup ? (groupConfig?.replyToMode ?? feishuCfg.replyToMode) : "off";
+  const originalMessageId = message.message_id;
+  let hasReplied = false; // Track if we've sent at least one reply (for "first" mode)
+
   // Streaming mode support
   const streamingEnabled = feishuCfg.streaming !== false && options.credentials; // Default to true if credentials available
   const streamingSession =
@@ -392,6 +401,10 @@ export async function processFeishuMessage(
             ? [payload.mediaUrl]
             : [];
 
+        // Determine if this reply should quote the original message
+        const shouldQuote = replyToMode === "all" || (replyToMode === "first" && !hasReplied);
+        const replyToMessageId = shouldQuote ? originalMessageId : undefined;
+
         if (mediaUrls.length > 0) {
           // Close streaming session before sending media
           if (streamingSession?.isActive()) {
@@ -402,6 +415,8 @@ export async function processFeishuMessage(
           for (let i = 0; i < mediaUrls.length; i++) {
             const mediaUrl = mediaUrls[i];
             const caption = i === 0 ? payload.text || "" : "";
+            // Only quote on the first media item
+            const mediaReplyTo = i === 0 ? replyToMessageId : undefined;
             await sendMessageFeishu(
               client,
               chatId,
@@ -409,8 +424,10 @@ export async function processFeishuMessage(
               {
                 mediaUrl,
                 receiveIdType: "chat_id",
+                replyToMessageId: mediaReplyTo,
               },
             );
+            if (i === 0) hasReplied = true;
           }
         } else if (payload.text) {
           // If streaming wasn't used, send as regular message
@@ -422,8 +439,10 @@ export async function processFeishuMessage(
               {
                 msgType: "text",
                 receiveIdType: "chat_id",
+                replyToMessageId,
               },
             );
+            hasReplied = true;
           }
         }
       },

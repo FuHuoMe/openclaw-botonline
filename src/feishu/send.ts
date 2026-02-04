@@ -18,6 +18,8 @@ export type FeishuSendOpts = {
   maxBytes?: number;
   /** Whether to auto-convert Markdown to rich text (post). Default: true */
   autoRichText?: boolean;
+  /** Message ID to reply to (uses reply API instead of create). */
+  replyToMessageId?: string;
 };
 
 export type FeishuSendResult = {
@@ -281,6 +283,24 @@ export async function sendMessageFeishu(
   const contentStr = typeof finalContent === "string" ? finalContent : JSON.stringify(finalContent);
 
   try {
+    // Use reply API if replyToMessageId is provided (for message quoting)
+    if (opts.replyToMessageId) {
+      const res = await client.im.message.reply({
+        path: { message_id: opts.replyToMessageId },
+        data: {
+          msg_type: msgType,
+          content: contentStr,
+        },
+      });
+
+      if (res.code !== 0) {
+        logger.error(`Feishu reply failed: ${res.code} - ${res.msg}`);
+        throw new Error(`Feishu API Error: ${res.msg}`);
+      }
+      return res.data ?? null;
+    }
+
+    // Default: create new message
     const res = await client.im.message.create({
       params: { receive_id_type: receiveIdType },
       data: {

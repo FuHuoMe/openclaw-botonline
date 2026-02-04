@@ -1,5 +1,5 @@
 import type { ClawdbotConfig } from "../config/config.js";
-import type { DmPolicy, GroupPolicy } from "../config/types.base.js";
+import type { DmPolicy, GroupPolicy, ReplyToMode } from "../config/types.base.js";
 import type { FeishuAccountConfig, FeishuGroupConfig } from "../config/types.feishu.js";
 import { firstDefined } from "./access.js";
 
@@ -15,6 +15,8 @@ export type ResolvedFeishuConfig = {
   chunkMode: "length" | "newline";
   blockStreaming: boolean;
   streaming: boolean;
+  /** Reply quoting mode for group chats. Default: "all" */
+  replyToMode: ReplyToMode;
   mediaMaxMb: number;
   groups: Record<string, FeishuGroupConfig>;
 };
@@ -47,6 +49,7 @@ export function resolveFeishuConfig(params: {
     chunkMode: firstDefined(accountCfg?.chunkMode, feishuCfg?.chunkMode) ?? "length",
     blockStreaming: firstDefined(accountCfg?.blockStreaming, feishuCfg?.blockStreaming) ?? true,
     streaming: firstDefined((accountCfg as any)?.streaming, (feishuCfg as any)?.streaming) ?? true,
+    replyToMode: firstDefined(accountCfg?.replyToMode, feishuCfg?.replyToMode) ?? "all",
     mediaMaxMb: firstDefined(accountCfg?.mediaMaxMb, feishuCfg?.mediaMaxMb) ?? 30,
     groups: { ...(feishuCfg?.groups ?? {}), ...(accountCfg?.groups ?? {}) },
   };

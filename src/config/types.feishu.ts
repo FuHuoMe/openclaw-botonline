@@ -1,4 +1,10 @@
-import type { DmPolicy, GroupPolicy, MarkdownConfig, OutboundRetryConfig } from "./types.base.js";
+import type {
+  DmPolicy,
+  GroupPolicy,
+  MarkdownConfig,
+  OutboundRetryConfig,
+  ReplyToMode,
+} from "./types.base.js";
 import type { ChannelHeartbeatVisibilityConfig } from "./types.channels.js";
 import type { DmConfig, ProviderCommandsConfig } from "./types.messages.js";
 import type { GroupToolPolicyConfig } from "./types.tools.js";
@@ -15,6 +21,14 @@ export type FeishuGroupConfig = {
   allowFrom?: string[];
   /** Optional system prompt snippet for this group. */
   systemPrompt?: string;
+  /**
+   * Controls reply quoting behavior for this group:
+   * - "off": don't quote original message
+   * - "first": quote on first reply only
+   * - "all": quote on all replies
+   * Inherits from account-level replyToMode if not specified.
+   */
+  replyToMode?: ReplyToMode;
 };
 
 export type FeishuAccountConfig = {
@@ -75,6 +89,14 @@ export type FeishuAccountConfig = {
    * Default: true.
    */
   streaming?: boolean;
+  /**
+   * Controls reply quoting behavior in group chats:
+   * - "off": don't quote original message (default for DMs)
+   * - "first": quote on first reply only
+   * - "all": quote on all replies
+   * Default for groups: "all".
+   */
+  replyToMode?: ReplyToMode;
   /** Media max size in MB. */
   mediaMaxMb?: number;
   /** Retry policy for outbound Feishu API calls. */
