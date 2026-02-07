@@ -25,6 +25,7 @@ import {
 import { readFeishuAllowFromStore, upsertFeishuPairingRequest } from "./pairing-store.js";
 import { sendMessageFeishu } from "./send.js";
 import { FeishuStreamingSession } from "./streaming-card.js";
+import { EmbeddedBlockChunker } from "../agents/pi-embedded-block-chunker.js";
 
 const logger = getChildLogger({ module: "feishu-message" });
 
@@ -430,6 +431,10 @@ export async function processFeishuMessage(
       : null;
   let streamingStarted = false;
   let lastPartialText = "";
+  // Chunker for throttling streaming updates (minimize API calls)
+  const streamingChunker = streamingSession
+    ? new EmbeddedBlockChunker({ minChars: 80, maxChars: 400, breakPreference: "sentence" })
+    : null;
 
   // Format body with standardized envelope (consistent with Telegram/WhatsApp)
   const formattedBody = formatInboundEnvelope({
@@ -483,12 +488,9 @@ export async function processFeishuMessage(
         const hasMedia = payload.mediaUrl || (payload.mediaUrls && payload.mediaUrls.length > 0);
         if (!payload.text && !hasMedia) return;
 
-        // Handle block replies - update streaming card with partial text
-        if (streamingSession?.isActive() && info?.kind === "block" && payload.text) {
-          logger.debug(`Updating streaming card with block text: ${payload.text.length} chars`);
-          await streamingSession.update(payload.text);
-          return;
-        }
+        // Block replies are now handled by onPartialReply with chunking/throttling
+        // Skip block payloads here to avoid duplicate updates
+        if (info?.kind === "block") return;
 
         // If streaming was active, close it with the final text
         if (streamingSession?.isActive() && info?.kind === "final") {
@@ -594,8 +596,23 @@ export async function processFeishuMessage(
         ? async (payload) => {
             if (!streamingSession.isActive() || !payload.text) return;
             if (payload.text === lastPartialText) return;
+            // Calculate delta from cumulative text
+            const delta = payload.text.slice(lastPartialText.length);
             lastPartialText = payload.text;
-            await streamingSession.update(payload.text);
+            if (!delta) return;
+            // Capture current text for the emit callback
+            const currentText = payload.text;
+            // Use chunker to throttle updates
+            streamingChunker?.append(delta);
+            streamingChunker?.drain({
+              force: false,
+              emit: () => {
+                // Update card with cumulative text (not just the chunk)
+                streamingSession.update(currentText).catch((err) => {
+                  logger.warn(`Streaming update failed: ${err}`);
+                });
+              },
+            });
           }
         : undefined,
       onReasoningStream: streamingSession
@@ -603,15 +620,35 @@ export async function processFeishuMessage(
             // Also update on reasoning stream for extended thinking models
             if (!streamingSession.isActive() || !payload.text) return;
             if (payload.text === lastPartialText) return;
+            const delta = payload.text.slice(lastPartialText.length);
             lastPartialText = payload.text;
-            await streamingSession.update(payload.text);
+            if (!delta) return;
+            const currentText = payload.text;
+            streamingChunker?.append(delta);
+            streamingChunker?.drain({
+              force: false,
+              emit: () => {
+                streamingSession.update(currentText).catch((err) => {
+                  logger.warn(`Reasoning stream update failed: ${err}`);
+                });
+              },
+            });
           }
         : undefined,
     },
   });
 
-  // Ensure streaming session is closed on completion
+  // Flush any remaining buffered content and close streaming session
   if (streamingSession?.isActive()) {
+    // Force drain remaining buffer before closing
+    if (streamingChunker?.hasBuffered()) {
+      streamingChunker.drain({
+        force: true,
+        emit: () => {
+          streamingSession.update(lastPartialText).catch(() => {});
+        },
+      });
+    }
     await streamingSession.close();
   }
 }
