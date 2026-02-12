@@ -321,10 +321,12 @@ export class FeishuStreamingSession {
   }
 
   /**
-   * Finalize and close the streaming session
+   * Finalize and close the streaming session.
+   * Returns true if the card was closed successfully, false on failure
+   * (caller should fallback to a regular message).
    */
-  async close(finalText?: string, summary?: string): Promise<void> {
-    if (!this.state || this.closed) return;
+  async close(finalText?: string, summary?: string): Promise<boolean> {
+    if (!this.state || this.closed) return false;
     this.closed = true;
 
     // Wait for pending updates
@@ -355,8 +357,10 @@ export class FeishuStreamingSession {
       );
 
       logger.info(`Closed streaming session: cardId=${this.state.cardId}`);
+      return true;
     } catch (err) {
       logger.error(`Failed to close streaming session: ${String(err)}`);
+      return false;
     }
   }
 
