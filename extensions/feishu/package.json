@@ -62,13 +62,13 @@
   },
   "peerDependencies": {
     "openclaw": "*",
-    "openclaw-cn": "*"
+    "openclaw-botonline": "*"
   },
   "peerDependenciesMeta": {
     "openclaw": {
       "optional": true
     },
-    "openclaw-cn": {
+    "openclaw-botonline": {
       "optional": true
     }
   },

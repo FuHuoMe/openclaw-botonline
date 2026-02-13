@@ -1,33 +1,33 @@
-# 🧞 Openclaw 中文社区
+# 🧞 OpenClaw Bot Online
 
-**私有化部署的 AI 智能助手，完整中文本地化。**
+**私有化部署的 AI 智能助手网关。**
 
-> ⚠️ **声明：** 本项目非官方 cn 版本，此项目的目的是为了让国内用户快速接入使用，并更加适配国内网络环境。本项目已将所有 GitHub 依赖包构建为 npm 包，让国内用户使用淘宝镜像源可快速下载，避免因网络原因无法安装原版。
+> ⚠️ **声明：** 本项目基于 [jiulingyun/openclaw-cn](https://github.com/jiulingyun/openclaw-cn) 进行再开发，旨在提供更加灵活的在线服务部署方案。
 
 <p align="center">
-  <img src="docs/images/main-view.png" alt="Openclaw 中文社区控制界面" width="800">
+  <img src="docs/images/main-view.png" alt="OpenClaw Bot Online 控制界面" width="800">
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/openclaw-cn"><img src="https://img.shields.io/npm/v/openclaw-cn?style=for-the-badge&logo=npm&logoColor=white&label=npm" alt="npm 版本"></a>
+  <a href="https://www.npmjs.com/package/openclaw-botonline"><img src="https://img.shields.io/npm/v/openclaw-botonline?style=for-the-badge&logo=npm&logoColor=white&label=npm" alt="npm 版本"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/Node.js-%E2%89%A5%2022-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js 版本"></a>
-  <a href="https://github.com/jiulingyun/openclaw-cn"><img src="https://img.shields.io/github/stars/jiulingyun/openclaw-cn?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars"></a>
+  <a href="https://github.com/FuHuoMe/openclaw-botonline"><img src="https://img.shields.io/github/stars/FuHuoMe/openclaw-botonline?style=for-the-badge&logo=github&label=Stars" alt="GitHub Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/许可证-MIT-blue.svg?style=for-the-badge" alt="MIT 许可证"></a>
 </p>
 
 <p align="center">
-  <a href="https://clawd.org.cn">🌐 官网</a> ·
-  <a href="https://clawd.org.cn/docs">📖 文档</a> ·
-  <a href="https://github.com/jiulingyun/openclaw-cn/issues">💬 反馈</a>
+  <a href="https://github.com/FuHuoMe/openclaw-botonline">📦 仓库</a> ·
+  <a href="https://docs.openclaw.ai">📖 文档</a> ·
+  <a href="https://github.com/FuHuoMe/openclaw-botonline/issues">💬 反馈</a>
 </p>
 
 ---
 
 ## ✨ 特性
 
-- **🇨🇳 完整中文化** — CLI、Web 控制界面、配置向导全部汉化
+- **🚀 在线服务** — 支持云端部署和在线服务模式
 - **🏠 本地优先** — 数据存储在你自己的设备上，隐私可控
-- **📱 多渠道支持** — WhatsApp、Telegram、Slack、Discord、Signal、iMessage、微信（开发中）
+- **📱 多渠道支持** — WhatsApp、Telegram、Slack、Discord、Signal、iMessage、飞书、微信（开发中）
 - **🎙️ 语音交互** — macOS/iOS/Android 语音唤醒和对话
 - **🖼️ Canvas 画布** — 智能体驱动的可视化工作区
 - **🔧 技能扩展** — 内置技能 + 自定义工作区技能
@@ -38,38 +38,38 @@
 
 ```bash
 # 安装
-npm install -g openclaw-cn@latest
+npm install -g openclaw-botonline@latest
 
 # 运行安装向导
-openclaw-cn onboard --install-daemon
+openclaw-botonline onboard --install-daemon
 
 # 启动网关
-openclaw-cn gateway --port 18789 --verbose
+openclaw-botonline gateway --port 18789 --verbose
 ```
 
-> 💡 **兼容性：** 旧版本 `clawdbot-cn` 命令仍然可用，作为别名指向 `openclaw-cn`。
+> 💡 **兼容性：** `clawdbot-online` 命令也可用，作为别名指向 `openclaw-botonline`。
 
 ## 📦 安装方式
 
 ### npm（推荐）
 
 ```bash
-npm install -g openclaw-cn@latest
+npm install -g openclaw-botonline@latest
 # 或
-pnpm add -g openclaw-cn@latest
+pnpm add -g openclaw-botonline@latest
 ```
 
 ### 从源码构建
 
 ```bash
-git clone https://github.com/jiulingyun/openclaw-cn.git
-cd openclaw-cn
+git clone https://github.com/FuHuoMe/openclaw-botonline.git
+cd openclaw-botonline
 
 pnpm install
 pnpm ui:build
 pnpm build
 
-pnpm openclaw-cn onboard --install-daemon
+pnpm openclaw-botonline onboard --install-daemon
 ```
 
 ## 🔧 配置
@@ -91,11 +91,11 @@ pnpm openclaw-cn onboard --install-daemon
 - [渠道接入](https://clawd.org.cn/docs/channels)
 - [技能开发](https://clawd.org.cn/docs/tools/skills)
 
-## 🔄 版本同步
+## 🔄 版本说明
 
-本项目基于 [openclaw/openclaw](https://github.com/openclaw/openclaw) 进行中文本地化，定期与上游保持同步。
+本项目基于 [jiulingyun/openclaw-cn](https://github.com/jiulingyun/openclaw-cn) 进行再开发，适配在线服务部署场景。
 
-版本格式：`vYYYY.M.D-cn.N`（如 `v2026.1.24-cn.3`）
+版本格式：`v0.Y.Z`（如 `v0.1.4`）
 
 ## 🤝 参与贡献
 
@@ -119,18 +119,12 @@ pnpm openclaw-cn onboard --install-daemon
 
 [MIT](LICENSE)
 
-## ⭐ Star 趋势
-
-<a href="https://star-history.com/#jiulingyun/openclaw-cn&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=jiulingyun/openclaw-cn&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=jiulingyun/openclaw-cn&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=jiulingyun/openclaw-cn&type=Date" />
- </picture>
-</a>
-
 ---
 
 <p align="center">
-  基于 <a href="https://github.com/openclaw/openclaw">Openclaw</a> · 感谢原项目开发者 🧞
+  <strong>本项目基于 <a href="https://github.com/jiulingyun/openclaw-cn">jiulingyun/openclaw-cn</a> 进行再开发</a>
+</p>
+
+<p align="center">
+  感谢原项目开发者 🧞
 </p>

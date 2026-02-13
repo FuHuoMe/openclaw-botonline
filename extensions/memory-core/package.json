@@ -9,6 +9,6 @@
     ]
   },
   "peerDependencies": {
-    "openclaw-cn": "*"
+    "openclaw-botonline": "*"
   }
 }
