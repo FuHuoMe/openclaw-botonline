@@ -1,10 +1,10 @@
 {
-  "name": "openclaw-cn",
+  "name": "openclaw-botonline",
   "version": "0.1.4",
-  "description": "Openclaw 中文社区 - WhatsApp gateway CLI (Baileys web) with Pi RPC agent",
+  "description": "OpenClaw Bot Online - Your AI assistant gateway",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jiulingyun/openclaw-cn"
+    "url": "https://github.com/FuHuoMe/openclaw-botonline"
   },
   "type": "module",
   "main": "dist/index.js",
@@ -14,8 +14,8 @@
     "./plugin-sdk/*": "./dist/plugin-sdk/*"
   },
   "bin": {
-    "openclaw-cn": "dist/entry.js",
-    "clawdbot-cn": "dist/entry.js"
+    "openclaw-botonline": "dist/entry.js",
+    "clawdbot-online": "dist/entry.js"
   },
   "files": [
     "dist/acp/**",
@@ -299,5 +299,6 @@
       "apps/macos/.build/**",
       "dist/Clawdbot.app/**"
     ]
-  }
+  },
+  "homepage": "https://github.com/FuHuoMe/openclaw-botonline#readme"
 }
