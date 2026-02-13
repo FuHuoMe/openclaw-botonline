@@ -319,9 +319,9 @@ importers:
       openclaw:
         specifier: link:../..
         version: link:../..
-      openclaw-cn:
+      openclaw-botonline:
         specifier: '*'
-        version: 2026.1.31(@types/express@5.0.6)(audio-decode@2.2.3)(devtools-protocol@0.0.1561482)(typescript@5.9.3)
+        version: 0.1.4(@types/express@5.0.6)(audio-decode@2.2.3)(devtools-protocol@0.0.1561482)(typescript@5.9.3)
 
   extensions/google-antigravity-auth: {}
 
@@ -334,15 +334,15 @@ importers:
         version: 10.5.0
     devDependencies:
       clawdbot:
-        specifier: workspace:openclaw-cn@*
+        specifier: workspace:openclaw-botonline@*
         version: link:../..
 
   extensions/imessage: {}
 
   extensions/line:
-    devDependencies:
+    dependencies:
       clawdbot:
-        specifier: workspace:openclaw-cn@*
+        specifier: workspace:openclaw-botonline@*
         version: link:../..
 
   extensions/llm-task: {}
@@ -368,16 +368,16 @@ importers:
         version: 4.3.6
     devDependencies:
       clawdbot:
-        specifier: workspace:openclaw-cn@*
+        specifier: workspace:openclaw-botonline@*
         version: link:../..
 
   extensions/mattermost: {}
 
   extensions/memory-core:
     dependencies:
-      openclaw-cn:
+      openclaw-botonline:
         specifier: '*'
-        version: 2026.1.31(@types/express@5.0.6)(audio-decode@2.2.3)(devtools-protocol@0.0.1561482)(typescript@5.9.3)
+        version: 0.1.4(@types/express@5.0.6)(audio-decode@2.2.3)(devtools-protocol@0.0.1561482)(typescript@5.9.3)
 
   extensions/memory-lancedb:
     dependencies:
@@ -405,7 +405,7 @@ importers:
         specifier: ^1.2.2
         version: 1.2.2
       clawdbot:
-        specifier: workspace:openclaw-cn@*
+        specifier: workspace:openclaw-botonline@*
         version: link:../..
       express:
         specifier: ^5.2.1
@@ -419,7 +419,7 @@ importers:
   extensions/nostr:
     dependencies:
       clawdbot:
-        specifier: workspace:openclaw-cn@*
+        specifier: workspace:openclaw-botonline@*
         version: link:../..
       nostr-tools:
         specifier: ^2.20.0
@@ -462,7 +462,7 @@ importers:
   extensions/zalo:
     dependencies:
       clawdbot:
-        specifier: workspace:openclaw-cn@*
+        specifier: workspace:openclaw-botonline@*
         version: link:../..
       undici:
         specifier: 7.19.0
@@ -474,7 +474,7 @@ importers:
         specifier: 0.34.47
         version: 0.34.47
       clawdbot:
-        specifier: workspace:openclaw-cn@*
+        specifier: workspace:openclaw-botonline@*
         version: link:../..
 
   ui:
@@ -615,10 +615,6 @@ packages:
 
   '@aws-sdk/credential-provider-login@3.972.0':
     resolution: {integrity: sha512-SsrsFJsEYAJHO4N/r2P0aK6o8si6f1lprR+Ej8J731XJqTckSGs/HFHcbxOyW/iKt+LNUvZa59/VlJmjhF4bEQ==}
-    engines: {node: '>=20.0.0'}
-
-  '@aws-sdk/credential-provider-login@3.972.1':
-    resolution: {integrity: sha512-CccqDGL6ZrF3/EFWZefvKW7QwwRdxlHUO8NVBKNVcNq6womrPDvqB6xc9icACtE0XB0a7PLoSTkAg8bQVkTO2w==}
     engines: {node: '>=20.0.0'}
 
   '@aws-sdk/credential-provider-login@3.972.3':
@@ -852,10 +848,6 @@ packages:
   '@aws-sdk/xml-builder@3.972.2':
     resolution: {integrity: sha512-jGOOV/bV1DhkkUhHiZ3/1GZ67cZyOXaDb7d1rYD6ZiXf5V9tBNOcgqXwRRPvrCbYaFRa1pPMFb3ZjqjWpR3YfA==}
     engines: {node: '>=20.0.0'}
-
-  '@aws/lambda-invoke-store@0.2.2':
-    resolution: {integrity: sha512-C0NBLsIqzDIae8HFw9YIrIBsbc0xTiOtt7fAukGPnqQ/+zZNaq+4jhuccltK0QuWHBnNm/a6kLIRA6GFiM10eg==}
-    engines: {node: '>=18.0.0'}
 
   '@aws/lambda-invoke-store@0.2.3':
     resolution: {integrity: sha512-oLvsaPMTBejkkmHhjf09xTgk71mOqyr/409NKhRIL08If7AhVfUsJhVsx386uJaqNd42v9kWamQ9lFbkoC2dYw==}
@@ -2965,22 +2957,6 @@ packages:
   '@webreflection/alien-signals@0.3.2':
     resolution: {integrity: sha512-DmNjD8Kq5iM+Toirp3llS/izAiI3Dwav5nHRvKdR/YJBTgun3y4xK76rs9CFYD2bZwZJN/rP+HjEqKTteGK+Yw==}
 
-  '@whiskeysockets/baileys@7.0.0-rc.9':
-    resolution: {integrity: sha512-YFm5gKXfDP9byCXCW3OPHKXLzrAKzolzgVUlRosHHgwbnf2YOO3XknkMm6J7+F0ns8OA0uuSBhgkRHTDtqkacw==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      audio-decode: ^2.1.3
-      jimp: ^1.6.0
-      link-preview-js: ^3.0.0
-      sharp: '*'
-    peerDependenciesMeta:
-      audio-decode:
-        optional: true
-      jimp:
-        optional: true
-      link-preview-js:
-        optional: true
-
   abort-controller@3.0.0:
     resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
     engines: {node: '>=6.5'}
@@ -4605,8 +4581,8 @@ packages:
       zod:
         optional: true
 
-  openclaw-cn@2026.1.31:
-    resolution: {integrity: sha512-n4/QT9wUs4cUr6TxaGqH+Ef4nARi9qO+ia+tPYWjp2a9kt7kj+YW7+nWR1wymRpBLUVJzh20u+4kfZnVj4lBeg==}
+  openclaw-botonline@0.1.4:
+    resolution: {integrity: sha512-/zk6nKYgEiQhEEIYpI5cwMMQhh7LqwgSa6Bxiq3WSRI2LK3lOT+uT9GwhO6/fB7j2CjnQPod8bFBOu6Q/VH69w==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -5666,7 +5642,7 @@ snapshots:
       '@aws-crypto/sha256-js': 5.2.0
       '@aws-crypto/supports-web-crypto': 5.2.0
       '@aws-crypto/util': 5.2.0
-      '@aws-sdk/types': 3.972.0
+      '@aws-sdk/types': 3.973.1
       '@aws-sdk/util-locate-window': 3.965.3
       '@smithy/util-utf8': 2.3.0
       tslib: 2.8.1
@@ -5674,7 +5650,7 @@ snapshots:
   '@aws-crypto/sha256-js@5.2.0':
     dependencies:
       '@aws-crypto/util': 5.2.0
-      '@aws-sdk/types': 3.972.0
+      '@aws-sdk/types': 3.973.1
       tslib: 2.8.1
 
   '@aws-crypto/supports-web-crypto@5.2.0':
@@ -5976,14 +5952,14 @@ snapshots:
 
   '@aws-sdk/core@3.973.1':
     dependencies:
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@aws-sdk/xml-builder': 3.972.1
-      '@smithy/core': 3.21.1
+      '@smithy/core': 3.22.0
       '@smithy/node-config-provider': 4.3.8
       '@smithy/property-provider': 4.2.8
       '@smithy/protocol-http': 5.3.8
       '@smithy/signature-v4': 5.3.8
-      '@smithy/smithy-client': 4.10.12
+      '@smithy/smithy-client': 4.11.1
       '@smithy/types': 4.12.0
       '@smithy/util-base64': 4.3.0
       '@smithy/util-middleware': 4.2.8
@@ -6091,12 +6067,12 @@ snapshots:
   '@aws-sdk/credential-provider-ini@3.972.1':
     dependencies:
       '@aws-sdk/core': 3.973.5
-      '@aws-sdk/credential-provider-env': 3.972.1
-      '@aws-sdk/credential-provider-http': 3.972.2
-      '@aws-sdk/credential-provider-login': 3.972.1
-      '@aws-sdk/credential-provider-process': 3.972.1
-      '@aws-sdk/credential-provider-sso': 3.972.1
-      '@aws-sdk/credential-provider-web-identity': 3.972.1
+      '@aws-sdk/credential-provider-env': 3.972.3
+      '@aws-sdk/credential-provider-http': 3.972.5
+      '@aws-sdk/credential-provider-login': 3.972.3
+      '@aws-sdk/credential-provider-process': 3.972.3
+      '@aws-sdk/credential-provider-sso': 3.972.3
+      '@aws-sdk/credential-provider-web-identity': 3.972.3
       '@aws-sdk/nested-clients': 3.974.0
       '@aws-sdk/types': 3.973.1
       '@smithy/credential-provider-imds': 4.2.8
@@ -6131,19 +6107,6 @@ snapshots:
       '@aws-sdk/core': 3.972.0
       '@aws-sdk/nested-clients': 3.972.0
       '@aws-sdk/types': 3.972.0
-      '@smithy/property-provider': 4.2.8
-      '@smithy/protocol-http': 5.3.8
-      '@smithy/shared-ini-file-loader': 4.4.3
-      '@smithy/types': 4.12.0
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - aws-crt
-
-  '@aws-sdk/credential-provider-login@3.972.1':
-    dependencies:
-      '@aws-sdk/core': 3.973.5
-      '@aws-sdk/nested-clients': 3.974.0
-      '@aws-sdk/types': 3.973.1
       '@smithy/property-provider': 4.2.8
       '@smithy/protocol-http': 5.3.8
       '@smithy/shared-ini-file-loader': 4.4.3
@@ -6190,7 +6153,7 @@ snapshots:
       '@aws-sdk/credential-provider-process': 3.972.1
       '@aws-sdk/credential-provider-sso': 3.972.1
       '@aws-sdk/credential-provider-web-identity': 3.972.1
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@smithy/credential-provider-imds': 4.2.8
       '@smithy/property-provider': 4.2.8
       '@smithy/shared-ini-file-loader': 4.4.3
@@ -6341,7 +6304,7 @@ snapshots:
 
   '@aws-sdk/middleware-host-header@3.972.1':
     dependencies:
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@smithy/protocol-http': 5.3.8
       '@smithy/types': 4.12.0
       tslib: 2.8.1
@@ -6361,7 +6324,7 @@ snapshots:
 
   '@aws-sdk/middleware-logger@3.972.1':
     dependencies:
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@smithy/types': 4.12.0
       tslib: 2.8.1
 
@@ -6374,14 +6337,14 @@ snapshots:
   '@aws-sdk/middleware-recursion-detection@3.972.0':
     dependencies:
       '@aws-sdk/types': 3.972.0
-      '@aws/lambda-invoke-store': 0.2.2
+      '@aws/lambda-invoke-store': 0.2.3
       '@smithy/protocol-http': 5.3.8
       '@smithy/types': 4.12.0
       tslib: 2.8.1
 
   '@aws-sdk/middleware-recursion-detection@3.972.1':
     dependencies:
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@aws/lambda-invoke-store': 0.2.3
       '@smithy/protocol-http': 5.3.8
       '@smithy/types': 4.12.0
@@ -6390,7 +6353,7 @@ snapshots:
   '@aws-sdk/middleware-recursion-detection@3.972.3':
     dependencies:
       '@aws-sdk/types': 3.973.1
-      '@aws/lambda-invoke-store': 0.2.2
+      '@aws/lambda-invoke-store': 0.2.3
       '@smithy/protocol-http': 5.3.8
       '@smithy/types': 4.12.0
       tslib: 2.8.1
@@ -6407,10 +6370,10 @@ snapshots:
 
   '@aws-sdk/middleware-user-agent@3.972.2':
     dependencies:
-      '@aws-sdk/core': 3.973.1
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/core': 3.973.5
+      '@aws-sdk/types': 3.973.1
       '@aws-sdk/util-endpoints': 3.972.0
-      '@smithy/core': 3.21.1
+      '@smithy/core': 3.22.0
       '@smithy/protocol-http': 5.3.8
       '@smithy/types': 4.12.0
       tslib: 2.8.1
@@ -6620,7 +6583,7 @@ snapshots:
 
   '@aws-sdk/region-config-resolver@3.972.1':
     dependencies:
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@smithy/config-resolver': 4.4.6
       '@smithy/node-config-provider': 4.3.8
       '@smithy/types': 4.12.0
@@ -6660,9 +6623,9 @@ snapshots:
 
   '@aws-sdk/token-providers@3.975.0':
     dependencies:
-      '@aws-sdk/core': 3.973.1
+      '@aws-sdk/core': 3.973.5
       '@aws-sdk/nested-clients': 3.975.0
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@smithy/property-provider': 4.2.8
       '@smithy/shared-ini-file-loader': 4.4.3
       '@smithy/types': 4.12.0
@@ -6733,7 +6696,7 @@ snapshots:
 
   '@aws-sdk/util-user-agent-browser@3.972.1':
     dependencies:
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/types': 3.973.1
       '@smithy/types': 4.12.0
       bowser: 2.13.1
       tslib: 2.8.1
@@ -6755,8 +6718,8 @@ snapshots:
 
   '@aws-sdk/util-user-agent-node@3.972.1':
     dependencies:
-      '@aws-sdk/middleware-user-agent': 3.972.2
-      '@aws-sdk/types': 3.973.0
+      '@aws-sdk/middleware-user-agent': 3.972.5
+      '@aws-sdk/types': 3.973.1
       '@smithy/node-config-provider': 4.3.8
       '@smithy/types': 4.12.0
       tslib: 2.8.1
@@ -6786,8 +6749,6 @@ snapshots:
       '@smithy/types': 4.12.0
       fast-xml-parser: 5.2.5
       tslib: 2.8.1
-
-  '@aws/lambda-invoke-store@0.2.2': {}
 
   '@aws/lambda-invoke-store@0.2.3': {}
 
@@ -8496,7 +8457,7 @@ snapshots:
 
   '@smithy/middleware-endpoint@4.4.11':
     dependencies:
-      '@smithy/core': 3.21.1
+      '@smithy/core': 3.22.0
       '@smithy/middleware-serde': 4.2.9
       '@smithy/node-config-provider': 4.3.8
       '@smithy/shared-ini-file-loader': 4.4.3
@@ -8521,7 +8482,7 @@ snapshots:
       '@smithy/node-config-provider': 4.3.8
       '@smithy/protocol-http': 5.3.8
       '@smithy/service-error-classification': 4.2.8
-      '@smithy/smithy-client': 4.10.12
+      '@smithy/smithy-client': 4.11.1
       '@smithy/types': 4.12.0
       '@smithy/util-middleware': 4.2.8
       '@smithy/util-retry': 4.2.8
@@ -8609,8 +8570,8 @@ snapshots:
 
   '@smithy/smithy-client@4.10.12':
     dependencies:
-      '@smithy/core': 3.21.1
-      '@smithy/middleware-endpoint': 4.4.11
+      '@smithy/core': 3.22.0
+      '@smithy/middleware-endpoint': 4.4.12
       '@smithy/middleware-stack': 4.2.8
       '@smithy/protocol-http': 5.3.8
       '@smithy/types': 4.12.0
@@ -8668,7 +8629,7 @@ snapshots:
   '@smithy/util-defaults-mode-browser@4.3.26':
     dependencies:
       '@smithy/property-provider': 4.2.8
-      '@smithy/smithy-client': 4.10.12
+      '@smithy/smithy-client': 4.11.1
       '@smithy/types': 4.12.0
       tslib: 2.8.1
 
@@ -8685,7 +8646,7 @@ snapshots:
       '@smithy/credential-provider-imds': 4.2.8
       '@smithy/node-config-provider': 4.3.8
       '@smithy/property-provider': 4.2.8
-      '@smithy/smithy-client': 4.10.12
+      '@smithy/smithy-client': 4.11.1
       '@smithy/types': 4.12.0
       tslib: 2.8.1
 
@@ -9073,26 +9034,6 @@ snapshots:
   '@webreflection/alien-signals@0.3.2':
     dependencies:
       alien-signals: 2.0.8
-
-  '@whiskeysockets/baileys@7.0.0-rc.9(audio-decode@2.2.3)(sharp@0.34.5)':
-    dependencies:
-      '@cacheable/node-cache': 1.7.6
-      '@hapi/boom': 9.1.4
-      async-mutex: 0.5.0
-      libsignal: '@openclaw-cn/libsignal@2.0.1'
-      lru-cache: 11.2.4
-      music-metadata: 11.10.6
-      p-queue: 9.1.0
-      pino: 9.14.0
-      protobufjs: 7.5.4
-      sharp: 0.34.5
-      ws: 8.19.0
-    optionalDependencies:
-      audio-decode: 2.2.3
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   abort-controller@3.0.0:
     dependencies:
@@ -10887,7 +10828,7 @@ snapshots:
       ws: 8.19.0
       zod: 4.3.6
 
-  openclaw-cn@2026.1.31(@types/express@5.0.6)(audio-decode@2.2.3)(devtools-protocol@0.0.1561482)(typescript@5.9.3):
+  openclaw-botonline@0.1.4(@types/express@5.0.6)(audio-decode@2.2.3)(devtools-protocol@0.0.1561482)(typescript@5.9.3):
     dependencies:
       '@agentclientprotocol/sdk': 0.13.1(zod@4.3.6)
       '@aws-sdk/client-bedrock': 3.980.0
@@ -10907,7 +10848,7 @@ snapshots:
       '@sinclair/typebox': 0.34.47
       '@slack/bolt': 4.6.0(@types/express@5.0.6)
       '@slack/web-api': 7.13.0
-      '@whiskeysockets/baileys': 7.0.0-rc.9(audio-decode@2.2.3)(sharp@0.34.5)
+      '@whiskeysockets/baileys': '@openclaw-cn/baileys@7.0.0-rc.9(audio-decode@2.2.3)(sharp@0.34.5)'
       ajv: 8.17.1
       body-parser: 2.2.2
       chalk: 5.6.2
