@@ -1,12 +1,19 @@
 {
-  "name": "openclaw",
-  "version": "2026.2.13",
-  "description": "Multi-channel AI gateway with extensible messaging integrations",
+  "name": "@fuhuome/openclawbot-online",
+  "version": "2026.3.0-1",
+  "description": "OpenClaw Bot Online - 基于官方 OpenClaw + FUHUO 复活协议（在线集中式）",
   "keywords": [],
+  "homepage": "https://github.com/FuHuoMe/openclawbot-online#readme",
+  "bugs": {
+    "url": "https://github.com/FuHuoMe/openclawbot-online/issues"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "熊大 🐻💪",
+  "repository": {
+    "url": "https://github.com/FuHuoMe/openclawbot-online"
+  },
   "bin": {
-    "openclaw": "openclaw.mjs"
+    "openclawbot-online": "openclaw.mjs"
   },
   "files": [
     "CHANGELOG.md",
